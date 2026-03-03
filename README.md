@@ -6,13 +6,90 @@ This repository contains the board files for the board used in the Tiresias Proj
 
 The complete design files for the **Tiresias Hearing Aid Development Board** (Tiresias DK) can be found on its [GitHub Repository](https://github.com/joaocolombari/Tiresias_HW).
 
-### Antenna
+### Firmware Pin and IO Map
+
+Pin and IO mappings below were consolidated from `pins.md` and board DTS/DTSI pinctrl/overlay files (`tiresias_dk_nrf5340_*`).
+Some pins are multiplexed across domains/features (for example `P1.09` appears as `LED2` and CPUNET `UART0_TX`), so active firmware configuration determines the effective function.
+
+#### Core Interfaces
+
+| Interface | Signal | Pin |
+| --------- | ------ | --- |
+| I2C1 | SDA | P1.02 |
+| I2C1 | SCL | P1.03 |
+| I2S0 | FSYNC / LRCK | P1.15 |
+| I2S0 | BCLK / SCK | P1.14 |
+| I2S0 | DOUT | P1.13 |
+| I2S0 | DIN | P1.12 |
+| I2S0 | MCK | P1.16 (not physically available on board, kept in pinctrl) |
+| QSPI (MX25R16) | CS | P0.18 |
+| QSPI (MX25R16) | SCK | P0.17 |
+| QSPI (MX25R16) | IO0 | P0.13 |
+| QSPI (MX25R16) | IO1 | P0.14 |
+| QSPI (MX25R16) | IO2 | P0.15 |
+| QSPI (MX25R16) | IO3 | P0.16 |
+| SPI4 (available) | SCK | P0.08 |
+| SPI4 (available) | MOSI | P0.09 |
+| SPI4 (available) | MISO | P0.10 |
+
+#### UART / Debug
+
+| Domain | Signal | Pin |
+| ------ | ------ | --- |
+| CPUAPP UART0 | TX | P1.05 |
+| CPUAPP UART0 | RX | P1.04 |
+| CPUAPP UART0 | RTS | P1.07 |
+| CPUAPP UART0 | CTS | P1.06 |
+| CPUNET UART0 | TX | P1.09 |
+| CPUNET UART0 | RX | P1.08 |
+| CPUNET UART0 | RTS | P1.10 |
+| CPUNET UART0 | CTS | P1.11 |
+| SWD | SWDIO | SWDIO |
+| SWD | SWDCLK | SWDCLK |
+| SWD | SWO | P0.11 |
+| SWD | RESET | RESET |
+
+#### Board Controls and Sensors
+
+| Block | Signal | Pin |
+| ----- | ------ | --- |
+| User LEDs | LED0 | P0.26 |
+| User LEDs | LED1 | P0.27 |
+| User LEDs | LED2 | P1.09 |
+| User Button | BUTTON | P0.29 (active low, pull-up) |
+| BMI270 | INT1 | P0.02 |
+| BMI270 | INT2 | P0.03 |
+| PMIC (NPM1100) | ISET | P0.23 |
+| Codec interface select | CODEC_INTERFACE (gpio-hog) | P0.21 (forced low) |
+
+#### ADAU1787 Control GPIOs
+
+| Group | Signal | Pin |
+| ----- | ------ | --- |
+| ADAU control | MP3 | P0.07 |
+| ADAU control | MP4 | P0.06 |
+| ADAU control | MP6 | P0.04 |
+| ADAU control | MP5 | P0.05 |
+| ADAU misc | !PD | P1.00 |
+| ADAU misc | EXT_CLK | P1.01 |
+
+#### Battery Monitor Notes
+
+| Source | Signal | Pin | Status |
+| ------ | ------ | --- | ------ |
+| `pins.md` | BAT_MON | P1.04 | Listed, unconfirmed in DTS |
+| `pins.md` | BAT_MON_EN | P1.05 | Listed, unconfirmed in DTS |
+| `tiresias_dk_nrf5340_cpuapp_common.dtsi` | BAT_MON (SAADC AIN4) | P0.28 | ADC channel configured; voltage-divider nodes commented out |
+
+### External conectors
+
+#### Antenna
 
 | Connector |
 | --------- |
 | J1 |
 
-### JST SH Connectors
+#### JST SH Connectors
 
 | Connector | Pin 1 | Pin 2 |
 | --------- | ----- | ----- |
@@ -21,7 +98,7 @@ The complete design files for the **Tiresias Hearing Aid Development Board** (Ti
 | J4 | HPOUTN0 | HPOUTP0 |
 | J5 | GND | VBUS |
 
-### Test Points (TP)
+#### Test Points (TP)
 
 | Test Point | Pin Name | Description |
 | ---------- | -------- | ----------- |
@@ -67,7 +144,7 @@ The complete design files for the **Tiresias Hearing Aid Development Board** (Ti
 | TP40 | DMIC23/MP10 | Digital Microphone Data input (DMIC2/3) / Multipurpose pin MP10 | 
 | TP41 | DMIC_CLK1/MP8 | Digital Microphone Clock 1 output / Multipurpose pin MP8 |
 
-### Solder Bridges (SB)
+#### Solder Bridges (SB)
 
 | Solder Bridge | Pins | Description |
 | ------------- | ---- | ----------- |
