@@ -11,7 +11,6 @@ flash: 192
 supported:
   - i2c
   - i2s
-  - spi
   - pwm
   - watchdog
   - usb_device

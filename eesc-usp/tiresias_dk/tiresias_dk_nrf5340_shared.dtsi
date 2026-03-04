@@ -31,8 +31,6 @@
     led1 = &led_1;
     led2 = &led_2;
     sw0 = &button_0;
-    // mcuboot-led0 = &led_0;
-    // mcuboot-button0 = &button_0;
     watchdog0 = &wdt0;
   };
 };

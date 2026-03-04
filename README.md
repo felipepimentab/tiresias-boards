@@ -21,7 +21,6 @@ Some pins are multiplexed across domains/features (for example `P1.09` appears a
 | I2S0 | BCLK / SCK | P1.14 |
 | I2S0 | DOUT | P1.13 |
 | I2S0 | DIN | P1.12 |
-| I2S0 | MCK | P1.16 (not physically available on board, kept in pinctrl) |
 | QSPI (MX25R16) | CS | P0.18 |
 | QSPI (MX25R16) | SCK | P0.17 |
 | QSPI (MX25R16) | IO0 | P0.13 |
