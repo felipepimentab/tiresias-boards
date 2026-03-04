@@ -28,9 +28,6 @@ Some pins are multiplexed across domains/features (for example `P1.09` appears a
 | QSPI (MX25R16) | IO1 | P0.14 |
 | QSPI (MX25R16) | IO2 | P0.15 |
 | QSPI (MX25R16) | IO3 | P0.16 |
-| SPI4 (available) | SCK | P0.08 |
-| SPI4 (available) | MOSI | P0.09 |
-| SPI4 (available) | MISO | P0.10 |
 
 #### Debug
 

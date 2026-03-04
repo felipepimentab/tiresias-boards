@@ -88,29 +88,6 @@
 		};
 	};
 
-	spi4_default: spi4_default {
-		group1 {
-			psels = <NRF_PSEL(SPIM_SCK, 0, 8)>,
-				<NRF_PSEL(SPIM_MOSI, 0, 9)>;
-			/* Workaround for issue with PCA10121 v0.7.0
-			 * related to SD-card
-			 */
-			nordic,drive-mode = <NRF_DRIVE_H0H1>;
-		};
-		group2 {
-			psels = <NRF_PSEL(SPIM_MISO, 0, 10)>;
-		};
-	};
-
-	spi4_sleep: spi4_sleep {
-		group1 {
-			psels = <NRF_PSEL(SPIM_SCK, 0, 8)>,
-				<NRF_PSEL(SPIM_MISO, 0, 10)>,
-				<NRF_PSEL(SPIM_MOSI, 0, 9)>;
-			low-power-enable;
-		};
-	};
-
 	/* QSPI pin configuration for external flash */
 	qspi_default: qspi_default {
 		group1 {
