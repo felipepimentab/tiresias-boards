@@ -32,21 +32,13 @@ Some pins are multiplexed across domains/features (for example `P1.09` appears a
 | SPI4 (available) | MOSI | P0.09 |
 | SPI4 (available) | MISO | P0.10 |
 
-#### UART / Debug
+#### Debug
 
 | Domain | Signal | Pin |
 | ------ | ------ | --- |
-| CPUAPP UART0 | TX | P1.05 |
-| CPUAPP UART0 | RX | P1.04 |
-| CPUAPP UART0 | RTS | P1.07 |
-| CPUAPP UART0 | CTS | P1.06 |
-| CPUNET UART0 | TX | P1.09 |
-| CPUNET UART0 | RX | P1.08 |
-| CPUNET UART0 | RTS | P1.10 |
-| CPUNET UART0 | CTS | P1.11 |
 | SWD | SWDIO | SWDIO |
 | SWD | SWDCLK | SWDCLK |
-| SWD | SWO | P0.11 |
+| SWD | SWO | P0.11/TRACEDATA0 |
 | SWD | RESET | RESET |
 
 #### Board Controls and Sensors
@@ -57,10 +49,8 @@ Some pins are multiplexed across domains/features (for example `P1.09` appears a
 | User LEDs | LED1 | P0.27 |
 | User LEDs | LED2 | P1.09 |
 | User Button | BUTTON | P0.29 (active low, pull-up) |
-| BMI270 | INT1 | P0.02 |
-| BMI270 | INT2 | P0.03 |
-| PMIC (NPM1100) | ISET | P0.23 |
-| Codec interface select | CODEC_INTERFACE (gpio-hog) | P0.21 (forced low) |
+| BMI270 | INT1 | P0.02/NFC1 |
+| BMI270 | INT2 | P0.03/NFC2 |
 
 #### ADAU1787 Control GPIOs
 
@@ -148,17 +138,16 @@ Some pins are multiplexed across domains/features (for example `P1.09` appears a
 
 | Solder Bridge | Pins | Description |
 | ------------- | ---- | ----------- |
-| SB1  | VDD_LED - ISET | |
-| SB2  | ISET - GND |
-| SB3  | VDD_LED - MODE |
-| SB4  | MODE - GND |
-| SB5  | NTC - GND |
-| SB6  |  |
-| SB7  | IOVDD - GND |
-| SB8  | REG_EN - AVDD |
-| SB9  | REG_EN - GND |
-| SB10 | GND - STANDBY |
-| SB11 | OUTPUT - MCLKIN |
-| SB12 | EXT_CLK - MCLKIN |
-| SB13 | VSYS - CE |
-| SB14 | VSYS - CE |
+| SB1  | VDD_LED - ISET | Open for 100mA current option |
+| SB2  | ISET - GND | Shorted for 100mA current option |
+| SB3  | VDD_LED - MODE | Open for automatic selection between hysteric and PWM modes |
+| SB4  | MODE - GND | Shorted for automatic selection between hysteric and PWM modes  |
+| SB5  | NTC - GND | Open. Short for external NTC |
+| SB7  | IOVDD - GND | Open for internal DVDD regulator |
+| SB8  | REG_EN - AVDD | Shorted for internal DVDD regulator enable |
+| SB9  | REG_EN - GND | Open for internal DVDD regulator enable |
+| SB10 | GND - STANDBY | Open for enabling the oscilator |
+| SB11 | OUTPUT - MCLKIN | Shorted for feeding the ADAU with the internal oscilator |
+| SB12 | EXT_CLK - MCLKIN | Open. Short and cut SB11 for external CLK in the ADAU |
+| SB13 | VSYS - CE | Shorted for CE active high |
+| SB14 | VSYS - CE | Shorted for CE active high |
