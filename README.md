@@ -1,10 +1,13 @@
 # Tiresias Boards
+<img align="right" alt="Tiresias Logo" height="160px" src="https://tiresias-website.vercel.app/tiresias-icon-full.png" />
 
 This repository contains the board files for the board used in the Tiresias Project.
 
 ## Tiresias DK
 
 The complete design files for the **Tiresias Hearing Aid Development Board** (Tiresias DK) can be found on its [GitHub Repository](https://github.com/joaocolombari/Tiresias_HW).
+
+![Board Assembly](board-pins.png)
 
 ### Firmware Pin and IO Map
 
